@@ -42,13 +42,13 @@ connection.connect((err) => {
 client.on('chat', (channel,user,message,self) => {
     if(message === '!burpees'){
         connection.query(mysql, function (err, result) {
-        var sql = "INSERT INTO burpees (count) VALUES 2";
+        var sql = "INSERT INTO burpees (count) VALUES (2)";
             if (err) throw err;
             console.log("One burpee added");
         });
         var count = connection.query("SELECT count FROM burpees", function (err, result, fields) {
             if (err) throw err;
-            return result.count;
+            return result;
           });
 
         client.action('CoachBot_1', `${options.identity.username} owes the chat ${count} burpees.`);
