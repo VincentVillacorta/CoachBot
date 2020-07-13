@@ -1,4 +1,4 @@
-const tmi = require('tmi.js');
+/*const tmi = require('tmi.js');
 
 const options = {
     options: {
@@ -23,22 +23,28 @@ client.on('connected',(address,port) => {
     client.action('CoachBot_1', 'CoachBot has arrived.');
 });
 
-
+*/
 const mysql = require('mysql');
 
 const connection = mysql.createConnection({
-  host: 'sql308.epizy.com',
-  user: 'epiz_26164688',
-  password: 'yctLPhSWoB8x',
-  database: 'epiz_26164688_CoachBotDB'
+  host: 'database-coachbot.cogy1so7fjll.us-east-2.rds.amazonaws.com',
+  port: '3306',
+  user: 'admin',
+  password: 'Megaman2498!'
 });
 
 connection.connect((err) => {
   if (err) console.error('error connecting: ', err);
   console.log('Connected!');
+  connection.query(mysql, function (err, result) {
+    var sql = "CREATE TABLE workouts (id INT AUTO_INCREMENT PRIMARY KEY, burpees VARINT(0), pushups(0), squats(0))";
+        if (err) throw err;
+        console.log("Workouts Table Created.");
+    });
+        
 });
 
-
+/*
 client.on('chat', (channel,user,message,self) => {
     if(message === '!burpees'){
         connection.query(mysql, function (err, result) {
@@ -53,4 +59,4 @@ client.on('chat', (channel,user,message,self) => {
 
         client.action('CoachBot_1', `${options.identity.username} owes the chat ${count} burpees.`);
     }
-});
+});*/
